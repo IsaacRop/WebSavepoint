@@ -141,7 +141,11 @@ export function useDiscover() {
     if (!state.next) return;
     const url = new URL(state.next);
     const data = await api.get<PaginatedResponse<Game>>(url.pathname + url.search);
-    setState((s) => ({ ...s, games: [...s.games, ...data.results], next: data.next }));
+    setState((s) => {
+      const seen = new Set(s.games.map((g) => g.id));
+      const fresh = data.results.filter((g) => !seen.has(g.id));
+      return { ...s, games: [...s.games, ...fresh], next: data.next };
+    });
   }, [state.next]);
 
   return {

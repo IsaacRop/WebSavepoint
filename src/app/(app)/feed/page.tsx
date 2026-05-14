@@ -11,7 +11,7 @@ export default function FeedPage() {
   return (
     <div className="max-w-[1360px] mx-auto px-6 py-10">
       <div className="max-w-2xl">
-        <h1 className="font-sans text-3xl font-medium text-ink mb-1">Diário</h1>
+        <h1 className="font-sans text-3xl font-medium text-ink dark:text-paper-100 mb-1">Diário</h1>
         <p className="font-mono text-[11px] uppercase tracking-widest text-ink-50 mb-8">
           Atividade dos seus amigos
         </p>
@@ -30,7 +30,7 @@ export default function FeedPage() {
           <div className="flex flex-col items-center gap-5 py-24 text-center">
             <FlagIcon />
             <div>
-              <p className="font-sans text-lg font-medium text-ink">
+              <p className="font-sans text-lg font-medium text-ink dark:text-paper-100">
                 Nada por aqui ainda.
               </p>
               <p className="font-sans text-sm text-ink-50 mt-1">

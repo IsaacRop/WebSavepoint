@@ -36,15 +36,15 @@ export function DeleteLogModal({ gameTitle, onConfirm, onCancel }: Props) {
       className="fixed inset-0 bg-ink/40 z-50 flex items-center justify-center p-4"
       onClick={(e) => { if (e.target === overlayRef.current) onCancel(); }}
     >
-      <div className="bg-paper-50 border border-ink-10 shadow-modal w-full max-w-sm p-8 flex flex-col gap-6">
+      <div className="bg-paper-50 dark:bg-night-800 border border-ink-10 dark:border-night-600 shadow-modal w-full max-w-sm p-8 flex flex-col gap-6">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-widest text-terra mb-2">
             Apagar este save?
           </p>
-          <h2 className="font-sans text-2xl font-medium text-ink">
+          <h2 className="font-sans text-2xl font-medium text-ink dark:text-paper-100">
             {gameTitle}
           </h2>
-          <p className="font-sans text-sm text-ink-70 mt-3 leading-relaxed">
+          <p className="font-sans text-sm text-ink-70 dark:text-paper-400 mt-3 leading-relaxed">
             Essa ação é permanente. O jogo sairá da sua biblioteca e o histórico será apagado.
           </p>
         </div>

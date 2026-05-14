@@ -86,10 +86,10 @@ export function SearchBar({ onClose }: Props) {
         onChange={(e) => setQuery(e.target.value)}
         onKeyDown={handleKeyDown}
         placeholder="Buscar jogos..."
-        className="w-full font-sans text-sm text-ink bg-paper-100 border border-ink-10 px-3 py-1.5 focus:outline-none focus:border-ink transition-colors duration-[120ms] placeholder:text-ink-10"
+        className="w-full font-sans text-sm text-ink dark:text-paper-100 bg-paper-100 dark:bg-night-800 border border-ink-10 dark:border-night-600 px-3 py-1.5 focus:outline-none focus:border-ink dark:focus:border-paper-400 transition-colors duration-[120ms] placeholder:text-ink-10 dark:placeholder:text-night-600"
       />
       {showDropdown && (
-        <div className="absolute top-full left-0 right-0 mt-1 bg-paper-100 border border-ink-10 shadow-card z-50 max-h-80 overflow-y-auto">
+        <div className="absolute top-full left-0 right-0 mt-1 bg-paper-100 dark:bg-night-800 border border-ink-10 dark:border-night-600 shadow-card z-50 max-h-80 overflow-y-auto">
           {isLoading && (
             <p className="px-4 py-3 font-mono text-xs text-ink-50">Buscando...</p>
           )}
@@ -97,7 +97,7 @@ export function SearchBar({ onClose }: Props) {
             <button
               key={game.id}
               onClick={() => handleSelect(game)}
-              className="flex items-center gap-3 w-full px-3 py-2.5 hover:bg-paper-200 transition-colors duration-[120ms] text-left"
+              className="flex items-center gap-3 w-full px-3 py-2.5 hover:bg-paper-200 dark:hover:bg-night-700 transition-colors duration-[120ms] text-left"
             >
               {game.cover_url ? (
                 <img
@@ -106,10 +106,10 @@ export function SearchBar({ onClose }: Props) {
                   className="w-8 h-10 object-cover flex-shrink-0"
                 />
               ) : (
-                <div className="w-8 h-10 bg-ink-10 flex-shrink-0" />
+                <div className="w-8 h-10 bg-ink-10 dark:bg-night-700 flex-shrink-0" />
               )}
               <div className="min-w-0">
-                <p className="font-sans text-sm text-ink truncate">{game.title}</p>
+                <p className="font-sans text-sm text-ink dark:text-paper-100 truncate">{game.title}</p>
                 {game.platforms.length > 0 && (
                   <p className="font-mono text-[10px] text-ink-50 truncate uppercase">
                     {game.platforms.slice(0, 2).join(" · ")}
@@ -121,7 +121,7 @@ export function SearchBar({ onClose }: Props) {
           {results.length > 0 && (
             <button
               onClick={handleViewAll}
-              className="flex items-center justify-center w-full px-3 py-2.5 border-t border-ink-10 hover:bg-paper-200 transition-colors duration-[120ms]"
+              className="flex items-center justify-center w-full px-3 py-2.5 border-t border-ink-10 dark:border-night-600 hover:bg-paper-200 dark:hover:bg-night-700 transition-colors duration-[120ms]"
             >
               <span className="font-mono text-[10px] uppercase tracking-widest text-ink-50">
                 Ver todos os resultados →

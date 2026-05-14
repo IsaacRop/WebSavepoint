@@ -17,7 +17,7 @@ export function SearchInput({ value, onChange, placeholder = "Buscar jogos..." }
         value={value}
         onChange={(e) => onChange(e.target.value)}
         placeholder={placeholder}
-        className="w-full font-sans text-lg text-ink bg-paper-100 border border-ink-10 pl-12 pr-12 py-4 focus:outline-none focus:border-ink transition-colors duration-[120ms] placeholder:text-ink-10"
+        className="w-full font-sans text-lg text-ink dark:text-paper-100 bg-paper-100 dark:bg-night-800 border border-ink-10 dark:border-night-600 pl-12 pr-12 py-4 focus:outline-none focus:border-ink dark:focus:border-paper-400 transition-colors duration-[120ms] placeholder:text-ink-10 dark:placeholder:text-night-600"
       />
       {value && (
         <button

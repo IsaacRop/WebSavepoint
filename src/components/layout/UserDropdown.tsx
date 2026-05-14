@@ -25,26 +25,26 @@ export function UserDropdown({ onClose }: Props) {
   return (
     <div
       ref={ref}
-      className="absolute right-0 top-full mt-2 w-48 bg-paper-100 border border-ink-10 shadow-hairline z-50"
+      className="absolute right-0 top-full mt-2 w-48 bg-paper-100 dark:bg-night-800 border border-ink-10 dark:border-night-600 shadow-hairline z-50"
     >
       <Link
         href={`/profile/${user?.username}`}
         onClick={onClose}
-        className="block px-4 py-3 font-mono text-xs uppercase tracking-widest text-ink hover:bg-paper-200 transition-colors duration-[120ms]"
+        className="block px-4 py-3 font-mono text-xs uppercase tracking-widest text-ink dark:text-paper-100 hover:bg-paper-200 dark:hover:bg-night-700 transition-colors duration-[120ms]"
       >
         Ver perfil
       </Link>
       <Link
         href="/settings"
         onClick={onClose}
-        className="block px-4 py-3 font-mono text-xs uppercase tracking-widest text-ink hover:bg-paper-200 transition-colors duration-[120ms]"
+        className="block px-4 py-3 font-mono text-xs uppercase tracking-widest text-ink dark:text-paper-100 hover:bg-paper-200 dark:hover:bg-night-700 transition-colors duration-[120ms]"
       >
         Configurações
       </Link>
-      <div className="border-t border-ink-10" />
+      <div className="border-t border-ink-10 dark:border-night-600" />
       <button
         onClick={() => { onClose(); logout(); }}
-        className="block w-full text-left px-4 py-3 font-mono text-xs uppercase tracking-widest text-terra hover:bg-paper-200 transition-colors duration-[120ms]"
+        className="block w-full text-left px-4 py-3 font-mono text-xs uppercase tracking-widest text-terra hover:bg-paper-200 dark:hover:bg-night-700 transition-colors duration-[120ms]"
       >
         Sair
       </button>

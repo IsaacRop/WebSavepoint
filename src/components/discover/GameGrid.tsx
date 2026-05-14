@@ -15,9 +15,9 @@ interface Props {
 function SkeletonCard() {
   return (
     <div className="flex flex-col gap-2 animate-pulse">
-      <div className="aspect-[3/4] w-full bg-paper-200 rounded-sm" />
-      <div className="h-3 bg-paper-200 rounded w-3/4" />
-      <div className="h-2 bg-paper-200 rounded w-1/2" />
+      <div className="aspect-[3/4] w-full bg-paper-200 dark:bg-night-700 rounded-sm" />
+      <div className="h-3 bg-paper-200 dark:bg-night-700 rounded w-3/4" />
+      <div className="h-2 bg-paper-200 dark:bg-night-700 rounded w-1/2" />
     </div>
   );
 }
@@ -31,7 +31,7 @@ function GameCard({ game, onQuickSave }: { game: Game; onQuickSave?: (g: Game) =
       onClick={() => router.push(`/games/${game.id}`)}
       className="flex flex-col gap-2 cursor-pointer group"
     >
-      <div className="relative aspect-[3/4] w-full bg-paper-200 overflow-hidden rounded-sm">
+      <div className="relative aspect-[3/4] w-full bg-paper-200 dark:bg-night-700 overflow-hidden rounded-sm">
         {game.cover_url ? (
           <img src={game.cover_url} alt={game.title} className="w-full h-full object-cover" />
         ) : (
@@ -44,7 +44,7 @@ function GameCard({ game, onQuickSave }: { game: Game; onQuickSave?: (g: Game) =
           {onQuickSave && (
             <button
               onClick={(e) => { e.stopPropagation(); onQuickSave(game); }}
-              className="w-full font-mono text-[10px] uppercase tracking-widest bg-paper-50 text-ink px-2 py-1.5 hover:bg-paper-100 transition-colors"
+              className="w-full font-mono text-[10px] uppercase tracking-widest bg-paper-50 dark:bg-night-900 text-ink dark:text-paper-100 px-2 py-1.5 hover:bg-paper-100 dark:hover:bg-night-800 transition-colors"
             >
               + Salvar
             </button>
@@ -53,7 +53,7 @@ function GameCard({ game, onQuickSave }: { game: Game; onQuickSave?: (g: Game) =
       </div>
 
       <div className="flex flex-col gap-0.5">
-        <h3 className="font-sans text-sm font-medium text-ink leading-snug line-clamp-2 group-hover:text-terra transition-colors duration-[200ms]">
+        <h3 className="font-sans text-sm font-medium text-ink dark:text-paper-100 leading-snug line-clamp-2 group-hover:text-terra transition-colors duration-[200ms]">
           {game.title}
         </h3>
         <div className="flex items-center gap-2 flex-wrap">
@@ -63,7 +63,7 @@ function GameCard({ game, onQuickSave }: { game: Game; onQuickSave?: (g: Game) =
             </span>
           )}
           {game.genres[0] && (
-            <span className="font-mono text-[10px] text-ink-50 border border-ink-10 px-1.5 py-0.5 uppercase">
+            <span className="font-mono text-[10px] text-ink-50 border border-ink-10 dark:border-night-600 px-1.5 py-0.5 uppercase">
               {game.genres[0]}
             </span>
           )}

@@ -21,7 +21,7 @@ export function ReviewCard({ review, currentUserId, onLike, onEdit, onDelete, sh
   const isOwner = currentUserId === review.user.id;
 
   return (
-    <article className="py-5 border-b border-ink-10 last:border-0 flex flex-col gap-3">
+    <article className="py-5 border-b border-ink-10 dark:border-night-600 last:border-0 flex flex-col gap-3">
       {/* Header */}
       <div className="flex items-center justify-between gap-3">
         <div className="flex items-center gap-2">
@@ -33,7 +33,7 @@ export function ReviewCard({ review, currentUserId, onLike, onEdit, onDelete, sh
           <div>
             <Link
               href={`/profile/${review.user.username}`}
-              className="font-sans text-sm font-medium text-ink hover:text-terra transition-colors"
+              className="font-sans text-sm font-medium text-ink dark:text-paper-100 hover:text-terra transition-colors"
             >
               {review.user.username}
             </Link>
@@ -66,12 +66,12 @@ export function ReviewCard({ review, currentUserId, onLike, onEdit, onDelete, sh
         <div className="relative pl-10">
           {review.contains_spoiler && !spoilerRevealed ? (
             <div className="relative">
-              <p className="font-sans text-sm text-ink-70 leading-relaxed blur-sm select-none line-clamp-3">
+              <p className="font-sans text-sm text-ink-70 dark:text-paper-400 leading-relaxed blur-sm select-none line-clamp-3">
                 {review.body}
               </p>
               <button
                 onClick={() => setSpoilerRevealed(true)}
-                className="absolute inset-0 flex items-center justify-center font-mono text-[10px] uppercase tracking-widest text-ink bg-paper-50/70"
+                className="absolute inset-0 flex items-center justify-center font-mono text-[10px] uppercase tracking-widest text-ink dark:text-paper-100 bg-paper-50/70 dark:bg-night-900/70"
               >
                 CONTÉM SPOILERS · CLIQUE PARA VER
               </button>
@@ -79,7 +79,7 @@ export function ReviewCard({ review, currentUserId, onLike, onEdit, onDelete, sh
           ) : (
             <>
               <p className={[
-                "font-sans text-sm text-ink-70 leading-relaxed",
+                "font-sans text-sm text-ink-70 dark:text-paper-400 leading-relaxed",
                 !expanded ? "line-clamp-3" : "",
               ].join(" ")}>
                 {review.body}
@@ -127,11 +127,11 @@ function OptionsMenu({ onEdit, onDelete }: { onEdit?: () => void; onDelete?: () 
         ⋯
       </button>
       {open && (
-        <div className="absolute right-0 top-full mt-1 w-36 bg-paper-100 border border-ink-10 shadow-hairline z-10">
+        <div className="absolute right-0 top-full mt-1 w-36 bg-paper-100 dark:bg-night-800 border border-ink-10 dark:border-night-600 shadow-hairline z-10">
           {onEdit && (
             <button
               onClick={() => { setOpen(false); onEdit(); }}
-              className="block w-full text-left px-4 py-2.5 font-mono text-[11px] uppercase tracking-widest text-ink hover:bg-paper-200"
+              className="block w-full text-left px-4 py-2.5 font-mono text-[11px] uppercase tracking-widest text-ink dark:text-paper-100 hover:bg-paper-200 dark:hover:bg-night-700"
             >
               Editar
             </button>
@@ -139,7 +139,7 @@ function OptionsMenu({ onEdit, onDelete }: { onEdit?: () => void; onDelete?: () 
           {onDelete && (
             <button
               onClick={() => { setOpen(false); onDelete(); }}
-              className="block w-full text-left px-4 py-2.5 font-mono text-[11px] uppercase tracking-widest text-terra hover:bg-paper-200"
+              className="block w-full text-left px-4 py-2.5 font-mono text-[11px] uppercase tracking-widest text-terra hover:bg-paper-200 dark:hover:bg-night-700"
             >
               Apagar
             </button>

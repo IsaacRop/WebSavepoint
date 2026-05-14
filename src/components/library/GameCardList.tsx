@@ -30,7 +30,7 @@ function GameCover({ url, title }: { url: string; title: string }) {
     );
   }
   return (
-    <div className="w-16 h-[88px] bg-paper-200 flex-shrink-0 rounded-sm flex items-center justify-center">
+    <div className="w-16 h-[88px] bg-paper-200 dark:bg-night-700 flex-shrink-0 rounded-sm flex items-center justify-center">
       <ControllerIcon />
     </div>
   );
@@ -50,12 +50,12 @@ export function GameCardList({ log, userRating, onClick }: Props) {
   return (
     <article
       onClick={handleClick}
-      className="flex items-start gap-4 py-4 border-b border-ink-10 last:border-0 cursor-pointer group"
+      className="flex items-start gap-4 py-4 border-b border-ink-10 dark:border-night-600 last:border-0 cursor-pointer group"
     >
       <GameCover url={log.game.cover_url} title={log.game.title} />
 
       <div className="flex flex-col gap-1.5 flex-1 min-w-0 pt-1">
-        <h3 className="font-sans text-base font-medium text-ink leading-snug group-hover:text-terra transition-colors duration-[200ms]">
+        <h3 className="font-sans text-base font-medium text-ink dark:text-paper-100 leading-snug group-hover:text-terra transition-colors duration-[200ms]">
           {log.game.title}
         </h3>
 

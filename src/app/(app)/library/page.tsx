@@ -75,7 +75,7 @@ export default function LibraryPage() {
       {/* Page header */}
       <div className="flex items-start justify-between gap-4 mb-8">
         <div>
-          <h1 className="font-sans text-3xl font-medium text-ink">Biblioteca</h1>
+          <h1 className="font-sans text-3xl font-medium text-ink dark:text-paper-100">Biblioteca</h1>
           <p className="font-mono text-[11px] uppercase tracking-widest text-ink-50 mt-1">
             {isLoading ? "Carregando..." : `${logs.length} jogos registrados`}
           </p>
@@ -88,7 +88,7 @@ export default function LibraryPage() {
       {/* Controls row */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
         {/* Status tabs */}
-        <div className="flex items-center gap-0 border-b border-ink-10 flex-1 overflow-x-auto">
+        <div className="flex items-center gap-0 border-b border-ink-10 dark:border-night-600 flex-1 overflow-x-auto">
           {STATUS_TABS.map(({ key, label }) => (
             <button
               key={key}
@@ -96,8 +96,8 @@ export default function LibraryPage() {
               className={[
                 "font-mono text-[11px] uppercase tracking-widest px-4 py-2.5 whitespace-nowrap transition-colors duration-[120ms] flex-shrink-0",
                 statusFilter === key
-                  ? "text-ink border-b-2 border-terra"
-                  : "text-ink-50 hover:text-ink",
+                  ? "text-ink dark:text-paper-100 border-b-2 border-terra"
+                  : "text-ink-50 hover:text-ink dark:hover:text-paper-100",
               ].join(" ")}
             >
               {label}
@@ -109,14 +109,14 @@ export default function LibraryPage() {
         <div className="flex items-center gap-1 flex-shrink-0">
           <button
             onClick={() => setView("list")}
-            className={`p-2 transition-colors duration-[120ms] ${viewMode === "list" ? "text-ink" : "text-ink-50 hover:text-ink"}`}
+            className={`p-2 transition-colors duration-[120ms] ${viewMode === "list" ? "text-ink dark:text-paper-100" : "text-ink-50 hover:text-ink dark:hover:text-paper-100"}`}
             aria-label="Visualização lista"
           >
             <ListIcon />
           </button>
           <button
             onClick={() => setView("grid")}
-            className={`p-2 transition-colors duration-[120ms] ${viewMode === "grid" ? "text-ink" : "text-ink-50 hover:text-ink"}`}
+            className={`p-2 transition-colors duration-[120ms] ${viewMode === "grid" ? "text-ink dark:text-paper-100" : "text-ink-50 hover:text-ink dark:hover:text-paper-100"}`}
             aria-label="Visualização grade"
           >
             <GridIcon />
@@ -131,7 +131,7 @@ export default function LibraryPage() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Filtrar por nome..."
-          className="w-full max-w-sm font-sans text-sm text-ink bg-transparent border border-ink-10 px-4 py-2.5 focus:outline-none focus:border-ink transition-colors duration-[120ms] placeholder:text-ink-10"
+          className="w-full max-w-sm font-sans text-sm text-ink dark:text-paper-100 bg-transparent border border-ink-10 dark:border-night-600 px-4 py-2.5 focus:outline-none focus:border-ink dark:focus:border-paper-400 transition-colors duration-[120ms] placeholder:text-ink-10 dark:placeholder:text-night-600"
         />
       </div>
 
@@ -140,7 +140,7 @@ export default function LibraryPage() {
         <div className="flex flex-col items-center justify-center py-24 gap-5 text-center">
           <FlagIcon />
           <div>
-            <p className="font-sans text-lg font-medium text-ink">
+            <p className="font-sans text-lg font-medium text-ink dark:text-paper-100">
               Nenhum save por aqui — ainda.
             </p>
             <p className="font-sans text-sm text-ink-50 mt-1">

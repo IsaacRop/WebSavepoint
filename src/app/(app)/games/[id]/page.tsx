@@ -101,7 +101,7 @@ export default function GameDetailPage() {
               className="w-40 sm:w-48 aspect-[3/4] object-cover rounded-sm shadow-card"
             />
           ) : (
-            <div className="w-40 sm:w-48 aspect-[3/4] bg-paper-200 rounded-sm flex items-center justify-center">
+            <div className="w-40 sm:w-48 aspect-[3/4] bg-paper-200 dark:bg-night-700 rounded-sm flex items-center justify-center">
               <span className="font-mono text-[10px] text-ink-50 uppercase">Sem capa</span>
             </div>
           )}
@@ -116,9 +116,9 @@ export default function GameDetailPage() {
                 game.release_year,
               ].filter(Boolean).join(" · ")}
             </p>
-            <h1 className="font-sans text-4xl font-medium text-ink leading-tight">{game.title}</h1>
+            <h1 className="font-sans text-4xl font-medium text-ink dark:text-paper-100 leading-tight">{game.title}</h1>
             {game.summary && (
-              <p className="font-sans text-sm text-ink-70 mt-2 leading-relaxed line-clamp-3">
+              <p className="font-sans text-sm text-ink-70 dark:text-paper-400 mt-2 leading-relaxed line-clamp-3">
                 {game.summary}
               </p>
             )}
@@ -128,7 +128,7 @@ export default function GameDetailPage() {
           {game.platforms.length > 0 && (
             <div className="flex flex-wrap gap-2">
               {game.platforms.map((p) => (
-                <span key={p} className="font-mono text-[10px] uppercase tracking-widest text-ink-50 border border-ink-10 px-2 py-0.5">
+                <span key={p} className="font-mono text-[10px] uppercase tracking-widest text-ink-50 border border-ink-10 dark:border-night-600 px-2 py-0.5">
                   {p}
                 </span>
               ))}
@@ -171,7 +171,7 @@ export default function GameDetailPage() {
       {/* Reviews section */}
       <section id="reviews-section">
         <div className="flex items-center justify-between mb-6">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-ink">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-ink dark:text-paper-100">
             Reviews
           </p>
           {!myReview && (

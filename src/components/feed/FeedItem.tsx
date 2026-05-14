@@ -33,7 +33,7 @@ function UserLine({ username, avatar, time }: { username: string; avatar: string
   return (
     <div className="flex items-center gap-2">
       <Avatar username={username} avatar={avatar} />
-      <Link href={`/profile/${username}`} className="font-sans text-sm font-medium text-ink hover:text-terra transition-colors">
+      <Link href={`/profile/${username}`} className="font-sans text-sm font-medium text-ink dark:text-paper-100 hover:text-terra transition-colors">
         {username}
       </Link>
       <span className="font-mono text-[10px] text-ink-50 uppercase">{time}</span>
@@ -59,7 +59,7 @@ function ReviewCreatedItem({ item }: { item: ActivityFeedItem }) {
         <div className="flex flex-col gap-1.5 flex-1 min-w-0">
           <p className="font-mono text-[10px] uppercase tracking-widest text-ink-50">
             JOGOU{" "}
-            <span className="text-ink">{p.game_title}</span>
+            <span className="text-ink dark:text-paper-100">{p.game_title}</span>
           </p>
           <span className="font-mono text-[12px] text-terra tracking-widest">
             {"★".repeat(rating)}{"☆".repeat(5 - rating)}
@@ -68,7 +68,7 @@ function ReviewCreatedItem({ item }: { item: ActivityFeedItem }) {
             <div className="relative">
               <p
                 className={[
-                  "font-sans text-sm text-ink-70 leading-relaxed line-clamp-3",
+                  "font-sans text-sm text-ink-70 dark:text-paper-400 leading-relaxed line-clamp-3",
                   p.contains_spoiler && !spoilerRevealed ? "blur-sm select-none" : "",
                 ].join(" ")}
               >
@@ -77,7 +77,7 @@ function ReviewCreatedItem({ item }: { item: ActivityFeedItem }) {
               {p.contains_spoiler && !spoilerRevealed && (
                 <button
                   onClick={() => setSpoilerRevealed(true)}
-                  className="absolute inset-0 flex items-center justify-center font-mono text-[10px] uppercase tracking-widest text-ink bg-paper-50/60"
+                  className="absolute inset-0 flex items-center justify-center font-mono text-[10px] uppercase tracking-widest text-ink dark:text-paper-100 bg-paper-50/60 dark:bg-night-900/60"
                 >
                   CONTÉM SPOILERS · CLIQUE PARA VER
                 </button>
@@ -101,9 +101,9 @@ function LogUpdatedItem({ item }: { item: ActivityFeedItem }) {
         {p.game_cover_url && (
           <img src={p.game_cover_url} alt={p.game_title} className="w-8 h-11 object-cover flex-shrink-0 rounded-sm" />
         )}
-        <p className="font-sans text-sm text-ink-70">
+        <p className="font-sans text-sm text-ink-70 dark:text-paper-400">
           registrou{" "}
-          <span className="font-medium text-ink">{p.game_title}</span>
+          <span className="font-medium text-ink dark:text-paper-100">{p.game_title}</span>
           {" "}como{" "}
           <StatusBadge status={p.status} />
         </p>
@@ -120,9 +120,9 @@ function ListCreatedItem({ item }: { item: ActivityFeedItem }) {
     <div className="flex flex-col gap-2">
       <UserLine username={item.user.username} avatar={item.user.avatar} time={relativeTime(item.created_at)} />
       <div className="pl-10">
-        <p className="font-sans text-sm text-ink-70">
+        <p className="font-sans text-sm text-ink-70 dark:text-paper-400">
           criou a lista{" "}
-          <Link href={`/lists/${p.list_id}`} className="font-medium text-ink hover:text-terra transition-colors">
+          <Link href={`/lists/${p.list_id}`} className="font-medium text-ink dark:text-paper-100 hover:text-terra transition-colors">
             &ldquo;{p.list_title}&rdquo;
           </Link>
           {" "}
@@ -142,9 +142,9 @@ function FollowItem({ item }: { item: ActivityFeedItem }) {
   return (
     <div className="flex flex-col gap-2">
       <UserLine username={item.user.username} avatar={item.user.avatar} time={relativeTime(item.created_at)} />
-      <p className="pl-10 font-sans text-sm text-ink-70">
+      <p className="pl-10 font-sans text-sm text-ink-70 dark:text-paper-400">
         passou a seguir{" "}
-        <Link href={`/profile/${p.followed_username}`} className="font-medium text-ink hover:text-terra transition-colors">
+        <Link href={`/profile/${p.followed_username}`} className="font-medium text-ink dark:text-paper-100 hover:text-terra transition-colors">
           {p.followed_username}
         </Link>
       </p>
@@ -156,7 +156,7 @@ function FollowItem({ item }: { item: ActivityFeedItem }) {
 
 export function FeedItem({ item }: Props) {
   return (
-    <div className="py-5 border-b border-ink-10 last:border-0">
+    <div className="py-5 border-b border-ink-10 dark:border-night-600 last:border-0">
       {item.event_type === "review_created" && <ReviewCreatedItem item={item} />}
       {item.event_type === "log_updated" && <LogUpdatedItem item={item} />}
       {item.event_type === "list_created" && <ListCreatedItem item={item} />}

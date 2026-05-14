@@ -100,13 +100,13 @@ export function LogGameModal({ existingLog, initialGame, onSave, onUpdate, onDel
       className="fixed inset-0 bg-ink/40 z-50 flex items-center justify-center p-4"
       onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}
     >
-      <div className="bg-paper-50 border border-ink-10 shadow-modal w-full max-w-md p-8 flex flex-col gap-6 max-h-[90vh] overflow-y-auto">
+      <div className="bg-paper-50 dark:bg-night-800 border border-ink-10 dark:border-night-600 shadow-modal w-full max-w-md p-8 flex flex-col gap-6 max-h-[90vh] overflow-y-auto">
         {/* Header */}
         <div>
           <p className="font-mono text-[10px] uppercase tracking-widest text-ink-50 mb-1">
             {isEditing ? "Atualizar Save" : "Nova Sessão"}
           </p>
-          <h2 className="font-sans text-2xl font-medium italic text-ink">
+          <h2 className="font-sans text-2xl font-medium italic text-ink dark:text-paper-100">
             {isEditing
               ? existingLog?.game.title
               : "Como foi a partida?"}
@@ -120,14 +120,14 @@ export function LogGameModal({ existingLog, initialGame, onSave, onUpdate, onDel
               Jogo
             </label>
             {selectedGame ? (
-              <div className="flex items-center gap-3 bg-paper-100 border border-ink-10 p-3">
+              <div className="flex items-center gap-3 bg-paper-100 dark:bg-night-700 border border-ink-10 dark:border-night-600 p-3">
                 {selectedGame.cover_url ? (
                   <img src={selectedGame.cover_url} alt={selectedGame.title} className="w-10 h-14 object-cover" />
                 ) : (
                   <div className="w-10 h-14 bg-paper-200" />
                 )}
                 <div className="flex-1 min-w-0">
-                  <p className="font-sans text-sm font-medium text-ink">{selectedGame.title}</p>
+                  <p className="font-sans text-sm font-medium text-ink dark:text-paper-100">{selectedGame.title}</p>
                   {selectedGame.release_year && (
                     <p className="font-mono text-[10px] text-ink-50">{selectedGame.release_year}</p>
                   )}
@@ -148,10 +148,10 @@ export function LogGameModal({ existingLog, initialGame, onSave, onUpdate, onDel
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder="Buscar jogo..."
-                  className="font-sans text-sm text-ink bg-transparent border border-ink-10 px-4 py-3 focus:outline-none focus:border-ink transition-colors duration-[120ms] placeholder:text-ink-10"
+                  className="font-sans text-sm text-ink dark:text-paper-100 bg-transparent border border-ink-10 dark:border-night-600 px-4 py-3 focus:outline-none focus:border-ink dark:focus:border-paper-400 transition-colors duration-[120ms] placeholder:text-ink-10 dark:placeholder:text-night-600"
                 />
                 {(searchResults.length > 0 || isSearching) && (
-                  <div className="absolute top-full left-0 right-0 mt-1 bg-paper-100 border border-ink-10 shadow-card z-10 max-h-48 overflow-y-auto">
+                  <div className="absolute top-full left-0 right-0 mt-1 bg-paper-100 dark:bg-night-800 border border-ink-10 dark:border-night-600 shadow-card z-10 max-h-48 overflow-y-auto">
                     {isSearching && (
                       <p className="px-4 py-3 font-mono text-xs text-ink-50">Buscando...</p>
                     )}
@@ -160,14 +160,14 @@ export function LogGameModal({ existingLog, initialGame, onSave, onUpdate, onDel
                         key={g.id}
                         type="button"
                         onClick={() => { setSelectedGame(g); setQuery(""); setSearchResults([]); }}
-                        className="flex items-center gap-3 w-full px-3 py-2.5 hover:bg-paper-200 transition-colors text-left"
+                        className="flex items-center gap-3 w-full px-3 py-2.5 hover:bg-paper-200 dark:hover:bg-night-700 transition-colors text-left"
                       >
                         {g.cover_url ? (
                           <img src={g.cover_url} alt={g.title} className="w-8 h-10 object-cover flex-shrink-0" />
                         ) : (
-                          <div className="w-8 h-10 bg-paper-200 flex-shrink-0" />
+                          <div className="w-8 h-10 bg-paper-200 dark:bg-night-700 flex-shrink-0" />
                         )}
-                        <span className="font-sans text-sm text-ink truncate">{g.title}</span>
+                        <span className="font-sans text-sm text-ink dark:text-paper-100 truncate">{g.title}</span>
                       </button>
                     ))}
                   </div>
@@ -189,8 +189,8 @@ export function LogGameModal({ existingLog, initialGame, onSave, onUpdate, onDel
                 className={[
                   "font-mono text-[11px] uppercase tracking-widest px-3 py-1.5 border transition-colors duration-[120ms]",
                   status === opt.value
-                    ? "bg-ink text-paper-50 border-ink"
-                    : "bg-transparent text-ink-50 border-ink-10 hover:border-ink hover:text-ink",
+                    ? "bg-ink dark:bg-paper-100 text-paper-50 dark:text-night-900 border-ink dark:border-paper-100"
+                    : "bg-transparent text-ink-50 border-ink-10 dark:border-night-600 hover:border-ink dark:hover:border-paper-400 hover:text-ink dark:hover:text-paper-100",
                 ].join(" ")}
               >
                 {opt.label}

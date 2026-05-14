@@ -23,7 +23,7 @@ export function GameCardGrid({ log, onClick }: Props) {
       className="flex flex-col gap-2 cursor-pointer group"
     >
       {/* Poster 3:4 */}
-      <div className="relative aspect-[3/4] w-full bg-paper-200 overflow-hidden rounded-sm">
+      <div className="relative aspect-[3/4] w-full bg-paper-200 dark:bg-night-700 overflow-hidden rounded-sm">
         {log.game.cover_url ? (
           <img
             src={log.game.cover_url}
@@ -42,7 +42,7 @@ export function GameCardGrid({ log, onClick }: Props) {
       </div>
 
       <div className="flex flex-col gap-0.5">
-        <h3 className="font-sans text-sm font-medium text-ink leading-snug line-clamp-2 group-hover:text-terra transition-colors duration-[200ms]">
+        <h3 className="font-sans text-sm font-medium text-ink dark:text-paper-100 leading-snug line-clamp-2 group-hover:text-terra transition-colors duration-[200ms]">
           {log.game.title}
         </h3>
         {log.game.rating !== null && (

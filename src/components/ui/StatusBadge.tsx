@@ -11,7 +11,7 @@ const STYLES: Record<Status, string> = {
   playing:
     "text-moss border border-moss bg-transparent",
   completed:
-    "text-paper-50 bg-ink border border-ink",
+    "text-paper-50 dark:text-night-900 bg-ink dark:bg-paper-100 border border-ink dark:border-paper-100",
   dropped:
     "text-ink-50 border border-ink-50 bg-transparent",
   want_to_play:

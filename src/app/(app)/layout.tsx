@@ -2,7 +2,7 @@ import { Navbar } from "@/components/layout/Navbar";
 
 export default function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-paper-50">
+    <div className="min-h-screen bg-paper-50 dark:bg-night-900">
       <Navbar />
       <main>{children}</main>
     </div>

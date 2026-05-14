@@ -59,20 +59,20 @@ export default function RegisterPage() {
   }
 
   return (
-    <main className="flex flex-1 flex-col items-center justify-center min-h-screen bg-paper-50 px-4">
+    <main className="flex flex-1 flex-col items-center justify-center min-h-screen bg-paper-50 dark:bg-night-900 px-4">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
           <p className="font-mono text-xs tracking-[0.25em] text-ink-50 uppercase mb-2">
             SavePoint
           </p>
-          <h1 className="font-sans text-3xl font-medium text-ink">
+          <h1 className="font-sans text-3xl font-medium text-ink dark:text-paper-100">
             Criar conta
           </h1>
         </div>
 
         <form
           onSubmit={handleSubmit}
-          className="bg-paper-100 border border-ink-10 p-8 flex flex-col gap-5 shadow-card"
+          className="bg-paper-100 dark:bg-night-800 border border-ink-10 dark:border-night-600 p-8 flex flex-col gap-5 shadow-card"
         >
           <Input
             label="Username"
@@ -127,7 +127,7 @@ export default function RegisterPage() {
 
         <p className="text-center mt-6 font-mono text-xs text-ink-50">
           Já tem conta?{" "}
-          <Link href="/login" className="text-ink underline underline-offset-4">
+          <Link href="/login" className="text-ink dark:text-paper-100 underline underline-offset-4">
             Entrar
           </Link>
         </p>

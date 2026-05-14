@@ -59,12 +59,12 @@ export function WriteReviewModal({
       className="fixed inset-0 bg-ink/40 z-50 flex items-center justify-center p-4"
       onClick={(e) => { if (e.target === overlayRef.current) onClose(); }}
     >
-      <div className="bg-paper-50 border border-ink-10 shadow-modal w-full max-w-lg p-8 flex flex-col gap-6">
+      <div className="bg-paper-50 dark:bg-night-800 border border-ink-10 dark:border-night-600 shadow-modal w-full max-w-lg p-8 flex flex-col gap-6">
         <div>
           <p className="font-mono text-[10px] uppercase tracking-widest text-ink-50 mb-1">
             {isEditing ? "Editar Review" : "Nova Review"}
           </p>
-          <h2 className="font-sans text-2xl font-medium italic text-ink">{gameTitle}</h2>
+          <h2 className="font-sans text-2xl font-medium italic text-ink dark:text-paper-100">{gameTitle}</h2>
         </div>
 
         {/* Rating */}
@@ -83,7 +83,7 @@ export function WriteReviewModal({
             onChange={(e) => setBody(e.target.value.slice(0, MAX_BODY))}
             placeholder="O que você achou?"
             rows={5}
-            className="font-sans text-sm text-ink bg-transparent border border-ink-10 px-4 py-3 focus:outline-none focus:border-ink transition-colors duration-[120ms] resize-none placeholder:text-ink-10"
+            className="font-sans text-sm text-ink dark:text-paper-100 bg-transparent border border-ink-10 dark:border-night-600 px-4 py-3 focus:outline-none focus:border-ink dark:focus:border-paper-400 transition-colors duration-[120ms] resize-none placeholder:text-ink-10 dark:placeholder:text-night-600"
           />
           <span className="font-mono text-[10px] text-ink-50 text-right">
             {body.length}/{MAX_BODY}
@@ -98,7 +98,7 @@ export function WriteReviewModal({
             onChange={(e) => setContainsSpoiler(e.target.checked)}
             className="w-4 h-4 accent-terra"
           />
-          <span className="font-mono text-[11px] uppercase tracking-widest text-ink-70">
+          <span className="font-mono text-[11px] uppercase tracking-widest text-ink-70 dark:text-paper-400">
             Contém spoilers — ocultar por padrão
           </span>
         </label>

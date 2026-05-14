@@ -84,9 +84,9 @@ export default function ProfilePage() {
       <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6 mb-10">
         <Avatar username={user.username} avatar={user.avatar} />
         <div className="flex flex-col gap-2 flex-1">
-          <h1 className="font-sans text-3xl font-medium text-ink">{user.username}</h1>
+          <h1 className="font-sans text-3xl font-medium text-ink dark:text-paper-100">{user.username}</h1>
           {user.bio && (
-            <p className="font-sans text-base text-ink-70 max-w-lg">{user.bio}</p>
+            <p className="font-sans text-base text-ink-70 dark:text-paper-400 max-w-lg">{user.bio}</p>
           )}
           <p className="font-mono text-[11px] uppercase tracking-widest text-ink-50">
             Entrou em <JoinedDate dateStr={user.created_at} />
@@ -95,10 +95,10 @@ export default function ProfilePage() {
           </p>
           <div className="flex items-center gap-4 mt-1">
             <span className="font-mono text-[11px] text-ink-50 uppercase">
-              <span className="text-ink font-medium">{user.followers_count ?? 0}</span> seguidores
+              <span className="text-ink dark:text-paper-100 font-medium">{user.followers_count ?? 0}</span> seguidores
             </span>
             <span className="font-mono text-[11px] text-ink-50 uppercase">
-              <span className="text-ink font-medium">{user.following_count ?? 0}</span> seguindo
+              <span className="text-ink dark:text-paper-100 font-medium">{user.following_count ?? 0}</span> seguindo
             </span>
           </div>
         </div>
@@ -116,7 +116,7 @@ export default function ProfilePage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-6 border-b border-ink-10 mb-8">
+      <div className="flex gap-6 border-b border-ink-10 dark:border-night-600 mb-8">
         {TABS.map(({ key, label }) => (
           <button
             key={key}
@@ -124,8 +124,8 @@ export default function ProfilePage() {
             className={[
               "font-mono text-[11px] uppercase tracking-widest pb-3 transition-colors duration-[120ms]",
               tab === key
-                ? "text-ink border-b-2 border-terra"
-                : "text-ink-50 hover:text-ink",
+                ? "text-ink dark:text-paper-100 border-b-2 border-terra"
+                : "text-ink-50 hover:text-ink dark:hover:text-paper-100",
             ].join(" ")}
           >
             {label}
@@ -169,14 +169,14 @@ export default function ProfilePage() {
               {lists.map((list) => (
                 <div
                   key={list.id}
-                  className="bg-paper-100 border border-ink-10 p-5 flex flex-col gap-1"
+                  className="bg-paper-100 dark:bg-night-800 border border-ink-10 dark:border-night-600 p-5 flex flex-col gap-1"
                 >
-                  <h3 className="font-sans text-base font-medium text-ink">{list.title}</h3>
+                  <h3 className="font-sans text-base font-medium text-ink dark:text-paper-100">{list.title}</h3>
                   <p className="font-mono text-[10px] uppercase tracking-widest text-ink-50">
                     {list.games_count} jogos
                   </p>
                   {list.description && (
-                    <p className="font-sans text-sm text-ink-70 mt-1 line-clamp-2">
+                    <p className="font-sans text-sm text-ink-70 dark:text-paper-400 mt-1 line-clamp-2">
                       {list.description}
                     </p>
                   )}
