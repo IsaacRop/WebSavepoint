@@ -8,37 +8,62 @@ export interface User {
   followers_count?: number;
   following_count?: number;
   saves_count?: number;
+  reviews_count?: number;
   is_following?: boolean;
 }
 
 export interface Game {
   id: string;
   igdb_id: number;
-  name: string;
+  title: string;
+  slug: string;
   cover_url: string;
   summary: string;
   genres: string[];
   platforms: string[];
-  first_release_date: string | null;
+  release_year: number | null;
   rating: number | null;
+}
+
+export interface ReviewGame {
+  id: string;
+  title: string;
+}
+
+export interface ReviewUser {
+  id: string;
+  username: string;
 }
 
 export interface Review {
   id: string;
-  user: Pick<User, "id" | "username" | "avatar">;
-  game: Pick<Game, "id" | "name" | "cover_url">;
+  user: ReviewUser;
+  game: ReviewGame;
   rating: number;
   body: string;
   contains_spoiler: boolean;
   likes_count: number;
   liked_by_me: boolean;
   created_at: string;
+  updated_at: string;
 }
 
 export interface GameLog {
   id: string;
-  game: Pick<Game, "id" | "name" | "cover_url" | "rating">;
+  game: Pick<Game, "id" | "title" | "cover_url" | "rating">;
   status: "playing" | "completed" | "dropped" | "want_to_play";
+  played_date: string | null;
+  updated_at: string;
+}
+
+export interface GameList {
+  id: string;
+  user: { id: string; username: string };
+  title: string;
+  description: string;
+  is_public: boolean;
+  games_count: number;
+  created_at: string;
   updated_at: string;
 }
 
