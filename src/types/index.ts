@@ -50,7 +50,9 @@ export interface Review {
 
 export interface GameLog {
   id: string;
-  game: Pick<Game, "id" | "title" | "cover_url"> & { rating: number | string | null };
+  game: Pick<Game, "id" | "title" | "cover_url" | "platforms"> & {
+    rating: number | string | null;
+  };
   status: "playing" | "completed" | "dropped" | "want_to_play";
   played_date: string | null;
   updated_at: string;
@@ -71,4 +73,55 @@ export interface PaginatedResponse<T> {
   next: string | null;
   previous: string | null;
   results: T[];
+}
+
+// ── Feed ──────────────────────────────────────────────────────────────────────
+
+export interface FeedUser {
+  id: string;
+  username: string;
+  avatar: string | null;
+}
+
+export interface ReviewCreatedPayload {
+  game_title: string;
+  game_cover_url: string;
+  rating: string;
+  body_preview: string;
+  contains_spoiler: boolean;
+}
+
+export interface LogUpdatedPayload {
+  game_title: string;
+  game_cover_url: string;
+  status: GameLog["status"];
+}
+
+export interface ListCreatedPayload {
+  list_id: string;
+  list_title: string;
+  games_count: number;
+}
+
+export interface FollowPayload {
+  followed_username: string;
+  followed_avatar: string | null;
+}
+
+export type FeedEventType =
+  | "review_created"
+  | "log_updated"
+  | "list_created"
+  | "follow";
+
+export interface ActivityFeedItem {
+  id: string;
+  user: FeedUser;
+  event_type: FeedEventType;
+  payload:
+    | ReviewCreatedPayload
+    | LogUpdatedPayload
+    | ListCreatedPayload
+    | FollowPayload;
+  created_at: string;
 }
