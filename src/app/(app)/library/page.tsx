@@ -24,12 +24,13 @@ const VIEW_KEY = "savepoint_library_view";
 
 export default function LibraryPage() {
   const [statusFilter, setStatusFilter] = useState<StatusFilter>("all");
-  const [viewMode, setViewMode] = useState<ViewMode>(() => {
-    if (typeof window !== "undefined") {
-      return (localStorage.getItem(VIEW_KEY) as ViewMode) ?? "list";
-    }
-    return "list";
-  });
+  const [viewMode, setViewMode] = useState<ViewMode>("list");
+
+  // Sync com localStorage só no cliente, após hidratação
+  useEffect(() => {
+    const stored = localStorage.getItem(VIEW_KEY) as ViewMode | null;
+    if (stored === "grid") setViewMode("grid");
+  }, []);
   const [search, setSearch] = useState("");
   const [logModalOpen, setLogModalOpen] = useState(false);
   const [editingLog, setEditingLog] = useState<GameLog | null>(null);
@@ -156,7 +157,7 @@ export default function LibraryPage() {
       {!isEmpty && viewMode === "list" && (
         <div className="max-w-2xl">
           {filtered.map((log) => (
-            <GameCardList key={log.id} log={log} onClick={() => openEdit(log)} />
+            <GameCardList key={log.id} log={log} />
           ))}
         </div>
       )}
@@ -165,7 +166,7 @@ export default function LibraryPage() {
       {!isEmpty && viewMode === "grid" && (
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
           {filtered.map((log) => (
-            <GameCardGrid key={log.id} log={log} onClick={() => openEdit(log)} />
+            <GameCardGrid key={log.id} log={log} />
           ))}
         </div>
       )}
