@@ -63,6 +63,20 @@ export function SearchBar({ onClose }: Props) {
     router.push(`/games/${game.id}`);
   }
 
+  function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter" && query.length >= 2) {
+      onClose();
+      router.push(`/games?q=${encodeURIComponent(query)}`);
+    }
+  }
+
+  function handleViewAll() {
+    onClose();
+    router.push(`/games?q=${encodeURIComponent(query)}`);
+  }
+
+  const showDropdown = results.length > 0 || isLoading;
+
   return (
     <div ref={containerRef} className="relative w-72">
       <input
@@ -70,10 +84,11 @@ export function SearchBar({ onClose }: Props) {
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
+        onKeyDown={handleKeyDown}
         placeholder="Buscar jogos..."
         className="w-full font-sans text-sm text-ink bg-paper-100 border border-ink-10 px-3 py-1.5 focus:outline-none focus:border-ink transition-colors duration-[120ms] placeholder:text-ink-10"
       />
-      {(results.length > 0 || isLoading) && (
+      {showDropdown && (
         <div className="absolute top-full left-0 right-0 mt-1 bg-paper-100 border border-ink-10 shadow-card z-50 max-h-80 overflow-y-auto">
           {isLoading && (
             <p className="px-4 py-3 font-mono text-xs text-ink-50">Buscando...</p>
@@ -103,6 +118,16 @@ export function SearchBar({ onClose }: Props) {
               </div>
             </button>
           ))}
+          {results.length > 0 && (
+            <button
+              onClick={handleViewAll}
+              className="flex items-center justify-center w-full px-3 py-2.5 border-t border-ink-10 hover:bg-paper-200 transition-colors duration-[120ms]"
+            >
+              <span className="font-mono text-[10px] uppercase tracking-widest text-ink-50">
+                Ver todos os resultados →
+              </span>
+            </button>
+          )}
         </div>
       )}
     </div>
