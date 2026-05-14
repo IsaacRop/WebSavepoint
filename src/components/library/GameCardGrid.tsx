@@ -47,7 +47,7 @@ export function GameCardGrid({ log, onClick }: Props) {
         </h3>
         {log.game.rating !== null && (
           <span className="font-mono text-[10px] text-ink-50 uppercase">
-            IGDB {log.game.rating.toFixed(0)}
+            IGDB {Number(log.game.rating).toFixed(0)}
           </span>
         )}
       </div>

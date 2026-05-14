@@ -57,11 +57,14 @@ export function GameCardList({ log, onClick }: Props) {
             </span>
           )}
         </div>
-        {log.game.rating !== null && (
-          <span className="font-mono text-[10px] text-ink-50 uppercase tracking-widest">
-            {"★".repeat(Math.round(log.game.rating / 20))} IGDB {log.game.rating.toFixed(0)}
-          </span>
-        )}
+        {log.game.rating !== null && (() => {
+          const r = Number(log.game.rating);
+          return (
+            <span className="font-mono text-[10px] text-ink-50 uppercase tracking-widest">
+              {"★".repeat(Math.round(r / 20))} IGDB {r.toFixed(0)}
+            </span>
+          );
+        })()}
       </div>
     </article>
   );

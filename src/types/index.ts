@@ -22,7 +22,7 @@ export interface Game {
   genres: string[];
   platforms: string[];
   release_year: number | null;
-  rating: number | null;
+  rating: number | string | null;
 }
 
 export interface ReviewGame {
@@ -50,7 +50,7 @@ export interface Review {
 
 export interface GameLog {
   id: string;
-  game: Pick<Game, "id" | "title" | "cover_url" | "rating">;
+  game: Pick<Game, "id" | "title" | "cover_url"> & { rating: number | string | null };
   status: "playing" | "completed" | "dropped" | "want_to_play";
   played_date: string | null;
   updated_at: string;
