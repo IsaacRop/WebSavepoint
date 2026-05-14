@@ -17,13 +17,14 @@ const STATUS_OPTIONS: { value: LogStatus; label: string }[] = [
 
 interface Props {
   existingLog?: GameLog;
+  initialGame?: Game;
   onSave: (gameId: string, status: LogStatus, playedDate?: string) => Promise<unknown>;
   onUpdate?: (logId: string, status: LogStatus, playedDate?: string) => Promise<unknown>;
   onDelete?: () => void;
   onClose: () => void;
 }
 
-export function LogGameModal({ existingLog, onSave, onUpdate, onDelete, onClose }: Props) {
+export function LogGameModal({ existingLog, initialGame, onSave, onUpdate, onDelete, onClose }: Props) {
   const overlayRef = useRef<HTMLDivElement>(null);
   const searchRef = useRef<HTMLInputElement>(null);
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -32,7 +33,7 @@ export function LogGameModal({ existingLog, onSave, onUpdate, onDelete, onClose 
 
   const [query, setQuery] = useState("");
   const [searchResults, setSearchResults] = useState<Game[]>([]);
-  const [selectedGame, setSelectedGame] = useState<Game | null>(null);
+  const [selectedGame, setSelectedGame] = useState<Game | null>(initialGame ?? null);
   const [isSearching, setIsSearching] = useState(false);
 
   const [status, setStatus] = useState<LogStatus>(existingLog?.status ?? "completed");
