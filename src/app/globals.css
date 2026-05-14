@@ -1,26 +1,66 @@
 @import "tailwindcss";
 
+@theme {
+  /* Colors — paper */
+  --color-paper-50: #F7F1E5;
+  --color-paper-100: #EFE7D8;
+  --color-paper-200: #E4D9C2;
+  --color-paper-300: #D4C6A9;
+  --color-paper-400: #B5A98F;
+
+  /* Colors — ink */
+  --color-ink: #1C1611;
+  --color-ink-90: #3A2E22;
+  --color-ink-70: #5A4A38;
+  --color-ink-50: #8A7A63;
+  --color-ink-10: #DCD1B8;
+
+  /* Colors — terra */
+  --color-terra-light: #D4724F;
+  --color-terra: #B8532C;
+  --color-terra-dark: #8F3D1E;
+
+  /* Colors — moss */
+  --color-moss: #5A6B3A;
+
+  /* Colors — gold */
+  --color-gold: #C89A3C;
+
+  /* Fonts */
+  --font-sans: var(--font-fraunces), Georgia, serif;
+  --font-mono: var(--font-jetbrains), monospace;
+
+  /* Border radius */
+  --radius-none: 0px;
+  --radius-sm: 2px;
+  --radius: 2px;
+  --radius-md: 4px;
+  --radius-lg: 8px;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-hairline: 0 1px 2px rgba(28, 22, 17, 0.06);
+  --shadow-card: 0 2px 8px rgba(28, 22, 17, 0.08);
+  --shadow-modal: 0 8px 32px rgba(28, 22, 17, 0.12);
+
+  /* Transition durations */
+  --duration-1: 120ms;
+  --duration-2: 200ms;
+  --duration-3: 320ms;
+  --duration-4: 520ms;
+}
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --color-paper: #F7F1E5;
+  --color-ink: #1C1611;
+  --color-terra: #B8532C;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #F7F1E5;
+  color: #1C1611;
 }
