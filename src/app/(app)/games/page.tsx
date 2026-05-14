@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useState } from "react";
 import { useDiscover } from "@/hooks/useDiscover";
 import { SearchInput } from "@/components/discover/SearchInput";
@@ -17,7 +18,7 @@ const ORDERINGS = [
   { value: "title" as const, label: "A–Z" },
 ];
 
-export default function DiscoverPage() {
+function DiscoverPageContent() {
   const {
     query, setQuery,
     genres, toggleGenre,
@@ -35,7 +36,7 @@ export default function DiscoverPage() {
     <div className="max-w-[1360px] mx-auto px-6 py-10">
       {/* Header */}
       <div className="mb-8">
-        <h1 className="font-sans text-3xl font-medium text-ink">Descobrir</h1>
+        <h1 className="font-sans text-3xl font-medium text-ink dark:text-paper-100">Descobrir</h1>
         <p className="font-mono text-[11px] uppercase tracking-widest text-ink-50 mt-1">
           {isSearchMode ? `Resultados para "${query}"` : "Explore o catálogo"}
         </p>
@@ -111,5 +112,33 @@ export default function DiscoverPage() {
         />
       )}
     </div>
+  );
+}
+
+function DiscoverSkeleton() {
+  return (
+    <div className="max-w-[1360px] mx-auto px-6 py-10">
+      <div className="mb-8 animate-pulse">
+        <div className="h-8 bg-paper-200 dark:bg-night-700 rounded w-32" />
+        <div className="h-3 bg-paper-200 dark:bg-night-700 rounded w-48 mt-2" />
+      </div>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+        {Array.from({ length: 10 }, (_, i) => (
+          <div key={i} className="flex flex-col gap-2 animate-pulse">
+            <div className="aspect-[3/4] w-full bg-paper-200 dark:bg-night-700 rounded-sm" />
+            <div className="h-3 bg-paper-200 dark:bg-night-700 rounded w-3/4" />
+            <div className="h-2 bg-paper-200 dark:bg-night-700 rounded w-1/2" />
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+export default function DiscoverPage() {
+  return (
+    <Suspense fallback={<DiscoverSkeleton />}>
+      <DiscoverPageContent />
+    </Suspense>
   );
 }

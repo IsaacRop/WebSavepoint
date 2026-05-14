@@ -3,7 +3,7 @@ import { NextRequest, NextResponse } from "next/server";
 const PROTECTED = ["/feed", "/library", "/games", "/profile", "/lists", "/friends", "/settings"];
 const AUTH_ONLY = ["/login", "/register"];
 
-export function proxy(request: NextRequest) {
+export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
   const token = request.cookies.get("savepoint_access")?.value;
 

@@ -1,4 +1,10 @@
+@import "@fontsource/fraunces/400.css";
+@import "@fontsource/fraunces/500.css";
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/500.css";
 @import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
 
 @theme {
   /* Colors — paper */
@@ -7,6 +13,12 @@
   --color-paper-200: #E4D9C2;
   --color-paper-300: #D4C6A9;
   --color-paper-400: #B5A98F;
+
+  /* Colors — night (dark mode surfaces) */
+  --color-night-900: #1A1510;
+  --color-night-800: #231C13;
+  --color-night-700: #2C2318;
+  --color-night-600: #3A2E22;
 
   /* Colors — ink */
   --color-ink: #1C1611;
@@ -51,6 +63,8 @@
 }
 
 :root {
+  --font-fraunces: "Fraunces", Georgia, serif;
+  --font-jetbrains: "JetBrains Mono", "Courier New", monospace;
   --color-paper: #F7F1E5;
   --color-ink: #1C1611;
   --color-terra: #B8532C;
@@ -63,4 +77,9 @@
 body {
   background-color: #F7F1E5;
   color: #1C1611;
+}
+
+.dark body {
+  background-color: #1A1510;
+  color: #EFE7D8;
 }
