@@ -1,10 +1,20 @@
+"use client";
+
 import { useRouter } from "next/navigation";
 import type { GameLog } from "@/types";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 
 interface Props {
   log: GameLog;
+  userRating?: number;
   onClick?: () => void;
+}
+
+const MONTHS_SHORT = ["JAN","FEV","MAR","ABR","MAI","JUN","JUL","AGO","SET","OUT","NOV","DEZ"];
+
+function formatShortDate(iso: string): string {
+  const d = new Date(iso);
+  return `${d.getDate()} ${MONTHS_SHORT[d.getMonth()]}`;
 }
 
 function GameCover({ url, title }: { url: string; title: string }) {
@@ -26,7 +36,7 @@ function GameCover({ url, title }: { url: string; title: string }) {
   );
 }
 
-export function GameCardList({ log, onClick }: Props) {
+export function GameCardList({ log, userRating, onClick }: Props) {
   const router = useRouter();
 
   function handleClick() {
@@ -34,9 +44,8 @@ export function GameCardList({ log, onClick }: Props) {
     router.push(`/games/${log.game.id}`);
   }
 
-  const date = log.played_date
-    ? new Date(log.played_date).toLocaleDateString("pt-BR", { month: "short", year: "numeric" })
-    : null;
+  const platforms = (log.game.platforms ?? []).slice(0, 2);
+  const updatedDate = formatShortDate(log.updated_at);
 
   return (
     <article
@@ -49,22 +58,24 @@ export function GameCardList({ log, onClick }: Props) {
         <h3 className="font-sans text-base font-medium text-ink leading-snug group-hover:text-terra transition-colors duration-[200ms]">
           {log.game.title}
         </h3>
+
         <div className="flex flex-wrap items-center gap-2">
           <StatusBadge status={log.status} />
-          {date && (
+          {platforms.length > 0 && (
             <span className="font-mono text-[10px] uppercase tracking-widest text-ink-50">
-              {date}
+              {platforms.join(" · ")}
             </span>
           )}
+          <span className="font-mono text-[10px] uppercase tracking-widest text-ink-50">
+            {updatedDate}
+          </span>
         </div>
-        {log.game.rating !== null && (() => {
-          const r = Number(log.game.rating);
-          return (
-            <span className="font-mono text-[10px] text-ink-50 uppercase tracking-widest">
-              {"★".repeat(Math.round(r / 20))} IGDB {r.toFixed(0)}
-            </span>
-          );
-        })()}
+
+        {userRating !== undefined && (
+          <span className="font-mono text-[11px] text-terra tracking-widest">
+            {"★".repeat(userRating)}{"☆".repeat(5 - userRating)}
+          </span>
+        )}
       </div>
     </article>
   );
